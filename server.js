@@ -5,6 +5,7 @@ import connectDB from './db.js'
 import routerr from './routes/auth-route.js';
 import postroute from './routes/postroutes.js';
 import likeroute from './routes/like.js';
+import Post from './models/post.js';
 // import path from 'path';
 
 
