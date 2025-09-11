@@ -1,7 +1,6 @@
-import express from "express";
 import { body } from "express-validator";
 import { loginUser, registerUser } from "../controllers/auth-controller.js";
-
+import express from "express"
 const routerr = express.Router();
 
 // ✅ Register route
@@ -26,8 +25,8 @@ routerr.post(
 );
 
 // ✅ Get user profile (protected)
-routerr.get("/me", (req,res)=>{
-    res.send(" hi  this is api")
+routerr.get("/me", (req, res) => {
+  res.send(" hi  this is api")
 });
 
 export default routerr;

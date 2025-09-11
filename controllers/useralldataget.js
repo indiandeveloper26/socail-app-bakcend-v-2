@@ -52,6 +52,8 @@ import User from "../models/User.js";
 const useralldata = async (req, res) => {
     const { id } = req.body;
 
+    console.log('iddd', id)
+
     if (!id) {
         return res.status(400).json({ message: "id not found" });
     }
@@ -59,6 +61,8 @@ const useralldata = async (req, res) => {
     try {
         let allusedat = await User.findById(id).populate("posts"); // ✅ ab kaam karega
         res.json({ data: allusedat });
+
+        console.log(allusedat)
     } catch (error) {
         console.error("Error fetching user data:", error);
         res.status(500).json({ message: "Server error" });

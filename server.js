@@ -1,7 +1,6 @@
 import express from 'express';
 import dotenv from "dotenv";
 import cors from 'cors';   // ✅ import cors
-import connectDB from './db.js'
 import routerr from './routes/auth-route.js';
 import postroute from './routes/postroutes.js';
 import likeroute from './routes/like.js';
@@ -13,6 +12,7 @@ import User from './models/User.js';
 import deltepostrote from './routes/deleteroute.js';
 import postuserprofiles from './routes/postuserprofile.js'
 import follwroute from './routes/follw.js';
+import connectDB from "./db.js"
 // import path from 'path';
 
 
@@ -27,6 +27,7 @@ const app = express();
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
 connectDB
+
 
 // DB
 
