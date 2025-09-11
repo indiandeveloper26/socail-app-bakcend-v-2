@@ -1,20 +1,86 @@
+
+
+
+// // import mongoose from "mongoose";
+
+// // const postSchema = new mongoose.Schema(
+// //   {
+// //     user: {
+// //       type: mongoose.Schema.Types.ObjectId,
+// //       ref: "User", // User model ka reference
+// //       required: true,
+// //     },
+// //     username: {
+// //       type: String,   // ✅ jisne post banayi uska naam
+// //       required: true, // ensure every post has username
+// //       trim: true,
+// //     },
+
+// //     content: {
+// //       type: String,
+// //       trim: true,
+// //     },
+// //     image: {
+// //       type: String, // optional image url / path
+// //     },
+// //     likes: [
+// //       {
+// //         type: mongoose.Schema.Types.ObjectId,
+// //         ref: "User",
+// //       },
+// //     ],
+// //     comments: [
+// //       {
+// //         user: {
+// //           type: mongoose.Schema.Types.ObjectId,
+// //           ref: "Comment",
+// //           required: true,
+// //         },
+// //         text: {
+// //           type: String,
+// //           required: true,
+// //           trim: true,
+// //         },
+// //         createdAt: {
+// //           type: Date,
+// //           default: Date.now,
+// //         },
+// //       },
+// //     ],
+// //   },
+// //   { timestamps: true }
+// // );
+
+// // const Post = mongoose.model("Post", postSchema);
+
+// // export default Post;
+
+
+
+
 // import mongoose from "mongoose";
 
 // const postSchema = new mongoose.Schema(
 //   {
 //     user: {
 //       type: mongoose.Schema.Types.ObjectId,
-//       ref: "User", // User model ka reference
+//       ref: "User",
 //       required: true,
 //     },
-//     content: {
+//     username: {
 //       type: String,
 //       required: true,
 //       trim: true,
 //     },
-//     image: {
-//       type: String, // optional image url
+//     content: {
+//       type: String,
+//       trim: true,
 //     },
+//     image: {
+//       type: String,
+//     },
+
+//     // ✅ Always array by default
 //     likes: [
 //       {
 //         type: mongoose.Schema.Types.ObjectId,
@@ -25,11 +91,13 @@
 //       {
 //         user: {
 //           type: mongoose.Schema.Types.ObjectId,
-//           ref: "User",
+//           ref: "User",   // 🔴 yaha galti thi, Comment nahi User hoga
+//           required: true,
 //         },
 //         text: {
 //           type: String,
 //           required: true,
+//           trim: true,
 //         },
 //         createdAt: {
 //           type: Date,
@@ -41,9 +109,16 @@
 //   { timestamps: true }
 // );
 
+// // ✅ Default values set karo
+// postSchema.path("likes").default([]);
+// postSchema.path("comments").default([]);
 
-// const Post=mongoose.model("Post", postSchema);
-// export default  Post
+// const Post = mongoose.model("Post", postSchema);
+
+// export default Post;
+
+
+
 
 
 
@@ -55,28 +130,32 @@ const postSchema = new mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User", // User model ka reference
+      ref: "socailuser", // ✅ User model ka naam
       required: true,
+    },
+    username: {
+      type: String,
+      required: true,
+      trim: true,
     },
     content: {
       type: String,
       trim: true,
     },
     image: {
-      type: String, // optional image url / path
+      type: String,
     },
     likes: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
+        ref: "socailuser",
       },
     ],
     comments: [
       {
         user: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "User",
-          required: true,
+          ref: "socailuser", // ya "Comment" agar alag se comment model banaya hai
         },
         text: {
           type: String,
@@ -93,6 +172,6 @@ const postSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+// ✅ Yaha Capital P rakho
 const Post = mongoose.model("Post", postSchema);
-
 export default Post;

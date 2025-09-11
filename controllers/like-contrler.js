@@ -4,7 +4,7 @@ import Post from "../models/post.js"
 // ✅ Like / Unlike Post
 export const likecon = async (req, res) => {
   try {
-    const { userId,postId } = req.body; // frontend se dono bhejna hoga
+    const { userId, postId } = req.body; // frontend se dono bhejna hoga
 
     // Find Post
     const post = await Post.findById(postId);
