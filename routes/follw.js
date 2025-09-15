@@ -5,8 +5,8 @@
 // 
 
 import express from "express";
-import deletePost from "../controllers/postdlt.js";
-import { follwscont } from "../controllers/follow.js";
+
+import toggleFollow from "../controllers/follow.js"
 
 const follwroute = express.Router();
 
@@ -14,6 +14,19 @@ const follwroute = express.Router();
 
 
 // ✅ Create Post Route
-follwroute.post("/", follwscont)
+follwroute.post("/", toggleFollow)
 
 export default follwroute;
+
+
+
+
+
+
+
+
+
+
+
+
+
