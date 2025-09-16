@@ -52,7 +52,7 @@ import User from "../models/User.js";
 const useralldata = async (req, res) => {
     const { id } = req.body;
 
-    console.log('iddd', id)
+    console.log('idaya hai ', id)
 
     if (!id) {
         return res.status(400).json({ message: "id not found" });

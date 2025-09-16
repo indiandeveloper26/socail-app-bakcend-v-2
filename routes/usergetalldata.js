@@ -10,6 +10,8 @@ const useralldataroute = express.Router();
 
 
 // ✅ Create Post Route
-useralldataroute.post("/", useralldata)
+useralldataroute.post("/", (req, res) => {
+    res.send("userprofle")
+})
 
 export default useralldataroute;

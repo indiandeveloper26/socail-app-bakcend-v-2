@@ -49,6 +49,8 @@ import User from "../models/User.js";
 const toggleFollow = async (req, res) => {
     try {
         const { userId, targetUserId } = req.body; // current user + target user
+
+        console.log(userId, targetUserId)
         if (!userId || !targetUserId) {
             return res.status(400).json({ error: "Both user IDs required" });
         }
@@ -67,8 +69,12 @@ const toggleFollow = async (req, res) => {
             targetUser.followers = targetUser.followers.filter(id => id !== userId);
             currentUser.following = currentUser.following.filter(id => id !== targetUserId);
             action = "unfollow";
+            console.log('unfollw now')
+
         } else {
             // ✅ Not following → Follow
+
+            console.log('follw now')
             targetUser.followers.push(userId);
             currentUser.following.push(targetUserId);
             action = "follow";

@@ -13,6 +13,7 @@ import deltepostrote from './routes/deleteroute.js';
 import postuserprofiles from './routes/postuserprofile.js'
 import follwroute from './routes/follw.js';
 import connectDB from "./db.js"
+import follwercount from './routes/follwercount.js';
 // import path from 'path';
 
 
@@ -49,10 +50,11 @@ app.use('/api', routerr);
 app.use('/post', postroute);
 app.use('/like', likeroute);
 app.use('/cmt', commentrouter);
-app.use('/useralldata', useralldataroute);
+app.use('/userprofile', useralldataroute)
 app.use('/delatepost', deltepostrote);
 app.use('/postuserprofile', postuserprofiles);
-app.use('/follw', follwroute);
+app.use('/toggleFollow', follwroute);
+app.use('/follwercount', follwercount);
 app.use(cors());
 // app.use('/api/users', userRoutes);
 // app.use('/api/posts', postRoutes);
@@ -60,7 +62,9 @@ app.use("/uploads", express.static("uploads")); // ✅ uploaded images accessibl
 
 
 // Health
-app.get('/api', (_, res) => res.send('verion:03'));
+app.get('/api', (req, res) => {
+  res.json({ "data": "v-4" })
+})
 
 app.get('/likeget', async (_, res) => {
 
@@ -85,13 +89,42 @@ app.get("/cmt", async (req, res) => {
 
 
 
-app.get("/userget", async (req, res) => {
+app.post("/userget", async (req, res) => {
+
+  let { id } = req.body
 
   try {
-    let userdat = await Post.find()
+    let userdat = await User.findById(id)
     res.json(userdat)
   } catch (error) {
 
+  }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+app.get("/postapi", async (req, res) => {
+
+  try {
+    let data = await Post.find()
+    res.json(data)
+  } catch (error) {
+    console.log(error)
   }
 })
 
@@ -101,12 +134,19 @@ app.get("/userget", async (req, res) => {
 
 
 
-app.get("/apitest", (req, res) => {
+app.get("/apitest", async (req, res) => {
   res.send("this is testapi")
 })
 
-app.get("/apitest", (req, res) => {
-  res.send("this is api rpute")
+app.get("/userapi", async (req, res) => {
+
+  try {
+    let data = await User.find()
+    res.json({ 'userdata': data })
+  } catch (error) {
+
+  }
+
 })
 
 
