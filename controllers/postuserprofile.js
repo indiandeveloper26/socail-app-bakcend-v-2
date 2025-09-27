@@ -4,7 +4,9 @@ import User from "../models/User.js";
 const postuserprofilee = async (req, res) => {
 
     try {
-        const { id } = req.body;
+        // const { id } = req.body;
+
+        let id = '68c8428d448b3579bb9d8618'
 
         console.log('userid', id)
 

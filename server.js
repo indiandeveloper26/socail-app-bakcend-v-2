@@ -4,7 +4,7 @@ import cors from 'cors';   // ✅ import cors
 import routerr from './routes/auth-route.js';
 import postroute from './routes/postroutes.js';
 import likeroute from './routes/like.js';
-import Post from './models/post.js';
+import Post from './models/Post.js';
 import commentrouter from './routes/comment.js';
 import Comment from './models/commnet.js';
 import useralldataroute from './routes/usergetalldata.js';
